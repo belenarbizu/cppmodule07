@@ -1,12 +1,24 @@
 #include "iter.hpp"
 
-void fillZeros(int n)
+void fillZeros(int & n)
 {
-    n = n + '0';
+    n = 0;
 }
 
 int main(void)
 {
     int num[] = {1, 2, 3, 4};
-    ::iter(num, 4, fillZeros);
+    std::cout << "Before: " << std::endl;
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << num[i] << " ";
+    }
+    std::cout << std::endl;
+    iter(num, 4, fillZeros);
+    std::cout << "After: " << std::endl;
+    for (int i = 0; i < 4; i++)
+    {
+        std::cout << num[i] << " ";
+    }
+    std::cout << std::endl;
 }

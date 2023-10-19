@@ -1,13 +1,14 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 template <typename T>
-void iter(T *array, int len, void (* foo)(T &))
+void iter(T *array, size_t len, void (* foo)(T &))
 {
     if (array == NULL || foo == NULL)
         return ;
-    for (int i = 0; i < len; i++)
+    for (size_t i = 0; i < len; i++)
     {
         foo(array[i]);
     }
