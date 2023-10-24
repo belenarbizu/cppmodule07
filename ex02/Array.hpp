@@ -1,14 +1,69 @@
+#pragma once
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
+
+#include <iostream>
+#include <exception>
 
 template <class T>
-class Array {
+class Array
+{
 private:
-
+    T *data;
+    unsigned int _n;
 public:
-    Array();
-    Array(unsigned int n);
-    ~Array();
-    Array(const Array & a);
-    Array& operator=(const Array & a);
+    Array()
+    {
+        this->_n = 0;
+        this->data = new T[0];
+    }
+    Array(unsigned int n)
+    {
+        this->_n = n;
+        this->data = new T[n];
+    }
+    ~Array()
+    {
+        if (this->_n > 0)
+            delete[] this->data;
+    }
+    Array(const Array & a)
+    {
+        *this = a;
+    }
+    Array& operator=(const Array & a)
+    {
+        this->_n = a.size();
+        this->data = new T[a.size()];
+        for (unsigned int i = 0; i < this->_n; i++)
+        {
+            this->data[i] = a.data[i];
+        }
+        return *this;
+    }
 
-    int size() const;
+    unsigned int size() const
+    {
+        return (this->_n);
+    }
+
+    class OutOfRange : public std::exception
+    {
+        public:
+            const char* what() const throw()
+            {
+                return ("Out of range");
+            }
+    };
+
+    T& operator[](unsigned int n)
+    {
+        if (n < 0 || n >= this->_n)
+        {
+            throw (OutOfRange());
+        }
+        return (this->data[n]);
+    }
 };
+
+#endif
