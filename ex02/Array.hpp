@@ -15,12 +15,16 @@ public:
     Array()
     {
         this->_n = 0;
-        this->data = new T[0];
+        this->data = nullptr;
     }
     Array(unsigned int n)
     {
         this->_n = n;
         this->data = new T[n];
+        for (unsigned int i = 0; i < n; i++)
+        {
+            this->data[i] = 0;
+        }
     }
     ~Array()
     {
@@ -33,6 +37,10 @@ public:
     }
     Array& operator=(const Array & a)
     {
+        if (this->_n)
+        {
+            delete[] this->data;
+        }
         this->_n = a.size();
         this->data = new T[a.size()];
         for (unsigned int i = 0; i < this->_n; i++)
