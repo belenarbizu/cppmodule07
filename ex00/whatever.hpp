@@ -1,6 +1,4 @@
 #pragma once
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
 
 template <typename T>
 T max(const T& x, const T& y)
@@ -22,5 +20,3 @@ void swap(U& x, U& y)
     x = y;
     y = u;
 }
-
-#endif

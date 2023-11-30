@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
 
 #include <iostream>
 #include <exception>
@@ -73,5 +71,3 @@ public:
         return (this->data[n]);
     }
 };
-
-#endif
